@@ -242,17 +242,15 @@ def find_name_duplicates(filename):
             elif cohort == "Summer 2015":
                 summer_15.add(first_name)
         
-        win_sp = set(winter_15 & spring_15)
-        win_sum = set(winter_15 & summer_15)
-        sum_sp = set(summer_15 & spring_15)
+        win_sp = winter_15 & spring_15
+        win_sum = winter_15 & summer_15
+        sum_sp = summer_15 & spring_15
 
-        print win_sp
-        print win_sum   
-        print sum_sp
+        duplicate_names = win_sp | win_sum | sum_sp
 
-        duplicate_names.add(win_sp)
-        duplicate_names.add(win_sum)
-        duplicate_names.add(sum_sp)
+        # duplicate_names.add(win_sp)
+        # duplicate_names.add(win_sum)
+        # duplicate_names.add(sum_sp)
 
     return duplicate_names
 
@@ -266,7 +264,28 @@ def find_house_members_by_student_name(student_list):
     student's cohort and that student's house."""
 
     # Code goes here
+    search_student = "Liz Acosta" #raw_input("search for a student and I'll return their house members")
+    cohort_set = set()
+    house_set = set()
 
+    for student in student_list:
+        full_name, house, advisor, cohort = student
+        if search_student == full_name:
+            student_cohort = cohort 
+            student_house = house
+                    
+
+    for student in student_list:
+        full_name, house, advisor, cohort = student
+        if student_cohort == cohort:
+            cohort_set.add(full_name)
+        if student_house == house:
+            house_set.add(full_name)
+
+
+    student_house_members = cohort_set & house_set       
+
+    print student_house_members
     return
 
 
@@ -277,9 +296,9 @@ def find_house_members_by_student_name(student_list):
 # print unique_houses("cohort_data.txt")
 # print sort_by_cohort("cohort_data.txt")
 #print students_by_house("cohort_data.txt")
-#all_students_data = all_students_tuple_list("cohort_data.txt")
+all_students_data = all_students_tuple_list("cohort_data.txt")
 # print all_students_data
 #result = find_cohort_by_student_name(all_students_data)
 #print result
-print find_name_duplicates("cohort_data.txt")
-# find_house_members_by_student_name(all_students_data)
+#print find_name_duplicates("cohort_data.txt")
+find_house_members_by_student_name(all_students_data)
