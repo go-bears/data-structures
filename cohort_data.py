@@ -246,6 +246,10 @@ def find_name_duplicates(filename):
         win_sum = set(winter_15 & summer_15)
         sum_sp = set(summer_15 & spring_15)
 
+        print win_sp
+        print win_sum   
+        print sum_sp
+
         duplicate_names.add(win_sp)
         duplicate_names.add(win_sum)
         duplicate_names.add(sum_sp)
